@@ -27,6 +27,7 @@ Or you can run an example by typing
 - Next the algorithm solves sudoku and display solved numbers in blank screen.
 - At last but not least it rewrap prespective of solved sudoku and overlay it on orignal image.
 ### Example<br>
-![Example](https://user-images.githubusercontent.com/98802415/153587621-3d66150e-6208-4381-b209-34d39a5f3c8b.png)
+![Example](https://user-images.githubusercontent.com/98802415/153587621-3d66150e-6208-4381-b209-34d39a5f3c8b.png)<br>
+To watch out a demo video go [here](https://vimeo.com/680478184)
 # Future Updates.
 This program can only solve sudoku's on an image, but i am working on the program to solve sudoku in real-time. I am making a setup file of this program which you can easily install on your system and use it. And also i am bringing Sudoku-Solver on website also.
