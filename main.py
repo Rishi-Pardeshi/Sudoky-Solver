@@ -1,13 +1,16 @@
-import os
-from cv2 import contourArea, solve
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 print('Setting Up')
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import cvzone
 import numpy as np
 import cv2
 import utils
 import solver
 import argparse
+import datetime
+
+# saving file name
+filename = 'SolvedImage(' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + ').jpg'
 
 # Defining height and width of image
 width,height = 450,450
@@ -15,14 +18,15 @@ width,height = 450,450
 # Initializing model
 model = utils.initializeModel()
 
-# Path of image
-path = 'sudokus/2.jpg'
-
 parser = argparse.ArgumentParser()
 parser.add_argument('path',help="Enter path of image. Note:- it should not contain any spaces between letters example:-'Sudo ku'")
 
 args = parser.parse_args()
 path = args.path
+# saving dir name
+dirName = os.path.dirname(path)
+
+filename = os.path.join(dirName,filename)
 
 # Reading Image
 img = cv2.imread(path)
@@ -65,6 +69,8 @@ if biggest.size != 0:
 
     # Getting each cell of sudoku
     boxes = utils.splitBoxes(imageWrapedColoured)
+    
+    print('almost there..')
 
     # Predicting number in each cell of sudoku
     numbers = utils.getPredictions(boxes,model)
@@ -100,6 +106,8 @@ if biggest.size != 0:
 
 # Stacking all images
 imgArray = ([img,imgThresh,imgContours,imgBigContours,imageWrapedColoured,imageDetectedDigits,imgSolvedDigits,inv_prespective])
+cv2.imwrite(filename,inv_prespective)
 stackedImage = cvzone.stackImages(imgArray,4,0.7)
+print('Done.')
 cv2.imshow('win',stackedImage)
 cv2.waitKey(0)

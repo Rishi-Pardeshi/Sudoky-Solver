@@ -1,16 +1,25 @@
-import os
-from cv2 import contourArea, solve
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 print('Setting Up')
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import cvzone
 import numpy as np
 import cv2
 import utils
 import solver
+import random
+import datetime
 
 width,height = 450,450
 model = utils.initializeModel()
-path = 'sudokus/2.jpg'
+lst = os.listdir('sudokus')
+path = os.path.join('sudokus',random.choice(lst))
+
+
+filename = 'SolvedImage(' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + ').jpg'
+dirName = os.path.dirname(path)
+
+filename = os.path.join(dirName,filename)
+
 
 img = cv2.imread(path)
 img = cv2.resize(img,(width,height))
@@ -34,6 +43,9 @@ if biggest.size != 0:
 
     imgSolvedDigits = imgBlank.copy()
     boxes = utils.splitBoxes(imageWrapedColoured)
+
+    print("Almost there..")
+
     numbers = utils.getPredictions(boxes,model)
     imageDetectedDigits = utils.displayNumbers(imageDetectedDigits,numbers,(0,255,255))
     numbers = np.asarray(numbers)
@@ -61,5 +73,7 @@ if biggest.size != 0:
 
 imgArray = ([img,imgThresh,imgContours,imgBigContours,imageWrapedColoured,imageDetectedDigits,imgSolvedDigits,inv_prespective])
 stackedImage = cvzone.stackImages(imgArray,4,0.7)
+cv2.imwrite(filename,inv_prespective)
+print('Done.')
 cv2.imshow('win',stackedImage)
 cv2.waitKey(0)
