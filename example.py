@@ -7,18 +7,11 @@ import cv2
 import utils
 import solver
 import random
-import datetime
 
 width,height = 450,450
 model = utils.initializeModel()
 lst = os.listdir('sudokus')
 path = os.path.join('sudokus',random.choice(lst))
-
-
-filename = 'SolvedImage(' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + ').jpg'
-dirName = os.path.dirname(path)
-
-filename = os.path.join(dirName,filename)
 
 
 img = cv2.imread(path)
@@ -73,7 +66,6 @@ if biggest.size != 0:
 
 imgArray = ([img,imgThresh,imgContours,imgBigContours,imageWrapedColoured,imageDetectedDigits,imgSolvedDigits,inv_prespective])
 stackedImage = cvzone.stackImages(imgArray,4,0.7)
-cv2.imwrite(filename,inv_prespective)
 print('Done.')
 cv2.imshow('win',stackedImage)
 cv2.waitKey(0)
