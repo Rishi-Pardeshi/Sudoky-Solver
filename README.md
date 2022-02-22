@@ -28,3 +28,5 @@ Or you can run an example by typing
 - At last but not least it rewrap prespective of solved sudoku and overlay it on orignal image.
 ### Example<br>
 ![Example](https://user-images.githubusercontent.com/98802415/153587621-3d66150e-6208-4381-b209-34d39a5f3c8b.png)
+# Future Updates.
+This program can only solve sudoku's on an image, but we are working on the program to solve sudoku in real-time.
