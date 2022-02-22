@@ -29,4 +29,4 @@ Or you can run an example by typing
 ### Example<br>
 ![Example](https://user-images.githubusercontent.com/98802415/153587621-3d66150e-6208-4381-b209-34d39a5f3c8b.png)
 # Future Updates.
-This program can only solve sudoku's on an image, but we are working on the program to solve sudoku in real-time.
+This program can only solve sudoku's on an image, but i am working on the program to solve sudoku in real-time. I am making a setup file of this program which you can easily install on your system and use it. And also i am bringing Sudoku-Solver on website also.
